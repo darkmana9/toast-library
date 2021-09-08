@@ -1,17 +1,35 @@
 import React from "react";
-import { ToastWrapper } from "@/components/Toast/components";
 
-export const Toast = ({position,
-                          type,
-                          time,
-                          title,
-                          description,
-                          indent,
-                          color,
-                          animation})  => {
-        return (
-            <ToastWrapper>
+import Error from '@/../public/svg/error.svg'
+import Info from '@/../public/svg/info.svg'
+import Warning from '@/../public/svg/warning.svg'
+import Success from '@/../public/svg/success.svg'
+import Close from '@/../public/svg/close.svg'
+import { CloseIconWrapper, IconWrapper, Title } from "@/components/Toast/components";
 
-            </ToastWrapper>
-        )
+export const Toast = ({type, title}) => {
+
+    const setSvg = (type) => {
+        switch (type) {
+            case 'info': {
+                return <Info/>
+            }
+            case 'error': {
+                return <Error/>
+            }
+            case 'warning': {
+                return <Warning/>
+            }
+            case 'success': {
+                return <Success/>
+            }
+        }
+    }
+    return (
+        <>
+            <IconWrapper>{setSvg(type)}</IconWrapper>
+            <Title>{title}</Title>
+            <CloseIconWrapper><Close/></CloseIconWrapper>
+        </>
+    )
 }
