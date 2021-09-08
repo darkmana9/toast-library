@@ -8,6 +8,7 @@ import alias from "@rollup/plugin-alias";
 import path from 'path';
 
 const root = path.resolve(__dirname);
+const svgr = require('@svgr/rollup').default
 
 export default {
     input: "src/index.js",
@@ -17,9 +18,10 @@ export default {
         sourcemap: true,
     },
     plugins: [
+        svgr(),
         alias(
             {
-                resolve: ['*', '.js', '.jsx'],
+                resolve: ['*', '.js', '.jsx', '.svg'],
                 entries: [{
                     find: '@',
                     replacement: path.resolve(root, './src'),
@@ -47,5 +49,5 @@ export default {
             port: 3000,
         }),
         livereload({watch: "src"}),
-       ]
+    ]
 }
