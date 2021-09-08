@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useState } from "react";
+import React, { forwardRef, useCallback, useImperativeHandle, useState } from "react";
 
 
 import { ERROR_TOAST_BACKGROUND } from "@/constants/color";
@@ -6,9 +6,19 @@ import { Toast } from "@/components/PortalToast/ToastWrapper/Toast";
 import { Wrapper } from "@/components/PortalToast/ToastWrapper/components";
 
 
-const ToastWrapper = ({position, type = 'error', time = 3000, title = 'Error', indent, color = ERROR_TOAST_BACKGROUND, animation}, ref) => {
+const ToastWrapper = ({
+                          position,
+                          type = 'error',
+                          time = 300000,
+                          title = 'Error',
+                          indent,
+                          color = ERROR_TOAST_BACKGROUND,
+                          animation
+                      }, ref) => {
 
     const [isActive, setIsActive] = useState(false)
+
+
 
     useImperativeHandle(ref, () => ({
 
@@ -17,13 +27,16 @@ const ToastWrapper = ({position, type = 'error', time = 3000, title = 'Error', i
             setTimeout(() => {
                 setIsActive(false)
             }, time)
+        },
+        removeToast: () => {
+            setIsActive(false)
         }
     }))
     return (
         isActive ?
-        <Wrapper position={position} backgroundColor={color}>
-            <Toast title={title} type={type}/>
-        </Wrapper>
+            <Wrapper position={position} backgroundColor={color}>
+                <Toast title={title} type={type} onRemoveToast/>
+            </Wrapper>
             : <></>
     )
 }

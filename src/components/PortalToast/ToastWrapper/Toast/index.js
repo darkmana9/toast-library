@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import Error from '@/../public/svg/error.svg'
 import Info from '@/../public/svg/info.svg'
 import Warning from '@/../public/svg/warning.svg'
 import Success from '@/../public/svg/success.svg'
-import Close from '@/../public/svg/close.svg'
-import { CloseIconWrapper, IconWrapper, Title } from "@/components/PortalToast/ToastWrapper/Toast/components";
+import { IconWrapper, Title } from "@/components/PortalToast/ToastWrapper/Toast/components";
+import { CloseButton } from "@/components/PortalToast/ToastWrapper/CloseButton";
+import { toast } from "@/service/ToastClass";
 
 
 export const Toast = ({type, title}) => {
@@ -27,11 +28,15 @@ export const Toast = ({type, title}) => {
         }
     }
 
+    const onRemoveToast = useCallback(() => {
+        toast.removeToast()
+    }, [])
+
     return (
         <>
             <IconWrapper>{setSvg(type)}</IconWrapper>
             <Title>{title}</Title>
-            <CloseIconWrapper><Close/></CloseIconWrapper>
+            <CloseButton removeToast={onRemoveToast}/>
         </>
     )
 }

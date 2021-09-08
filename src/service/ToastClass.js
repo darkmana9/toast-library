@@ -2,6 +2,7 @@ import React from "react";
 import { ERROR_TOAST_BACKGROUND } from "@/constants/color";
 
 export class ToastClass {
+
     constructor(title = '', type = 'error', color = ERROR_TOAST_BACKGROUND, position = 'RB', ref) {
         if (!!ToastClass.instance) {
             return ToastClass.instance
@@ -23,6 +24,9 @@ export class ToastClass {
     }
     showToast = () => {
         this.ref.current.showToast()
+    }
+    removeToast = () => {
+        this.ref.current.removeToast()
     }
 }
 
