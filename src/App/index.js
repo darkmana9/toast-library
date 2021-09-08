@@ -1,10 +1,14 @@
 import React from 'react'
 
+import { toast } from "@/service/ToastClass";
+import { PortalToast } from "@/components/PortalToast";
+
+
 export const App = () => {
-
     return (
-
-        <h1> Hello World From React-Rollup </h1>
-
+        <>
+            <PortalToast/>
+            <button onClick={toast.showToast}>Get toast</button>
+        </>
     )
 }

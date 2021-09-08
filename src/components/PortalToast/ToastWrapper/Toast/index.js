@@ -5,7 +5,8 @@ import Info from '@/../public/svg/info.svg'
 import Warning from '@/../public/svg/warning.svg'
 import Success from '@/../public/svg/success.svg'
 import Close from '@/../public/svg/close.svg'
-import { CloseIconWrapper, IconWrapper, Title } from "@/components/Toast/components";
+import { CloseIconWrapper, IconWrapper, Title } from "@/components/PortalToast/ToastWrapper/Toast/components";
+
 
 export const Toast = ({type, title}) => {
 
@@ -25,6 +26,7 @@ export const Toast = ({type, title}) => {
             }
         }
     }
+
     return (
         <>
             <IconWrapper>{setSvg(type)}</IconWrapper>

@@ -1,12 +1,10 @@
 import React from "react";
 import ReactDOM from 'react-dom'
 
-import { ToastWrapper } from "@/components/ToastWrapper";
-
-
+import { App } from "@/App";
 
 
 ReactDOM.render(
-    <ToastWrapper color='red' title='Error' description='You get an error' type={'error'}/>,
+    <App/>,
     document.getElementById('root'),
 )
