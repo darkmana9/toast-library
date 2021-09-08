@@ -5,7 +5,11 @@ export const Wrapper = styled.div`
   height: 100px;
   display: flex;
   justify-content: space-around;
-  background-color: ${props => props.backgroundColor};
   border-radius: 15px;
   align-items: center;
+  position: absolute;
+  z-index: 9999;
+  background-color: ${props => props.backgroundColor};
+  right: 0;
+  bottom: 0;
  `
