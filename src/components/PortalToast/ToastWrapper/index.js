@@ -8,7 +8,6 @@ import { TOAST_GAP, TOAST_HEIGHT } from "@/constants/position";
 const ToastWrapper = (props, ref) => {
 
     const [toasts, setToasts] = useState([])
-    const [relativePosition, setRelativePosition] = useState(0)
     useEffect(() => {
         console.log('render')
     })
@@ -32,13 +31,16 @@ const ToastWrapper = (props, ref) => {
                             }
                         ])
                 })
+                setTimeout(() => {
+                    setToasts((prevState) => {
+                        prevState.pop()
+                        return [...prevState]
+                    })
+                }, toast.time)
             }
         },
         removeToast: () => {
-            setToasts((prevState) => {
-                prevState.pop()
-                return [...prevState]
-            })
+
         }
     }))
     return (
