@@ -1,9 +1,10 @@
 import React from "react";
 import { ERROR_TOAST_BACKGROUND } from "@/constants/color";
+import { TOAST_GAP, TOAST_HEIGHT } from "@/constants/position";
 
 export class ToastClass {
 
-    constructor(title = '', type = 'error', color = ERROR_TOAST_BACKGROUND, position = 'RB', ref) {
+    constructor(title = '', type = 'error', color = ERROR_TOAST_BACKGROUND, position = 'RB', ref, id) {
         if (!!ToastClass.instance) {
             return ToastClass.instance
         }
@@ -14,6 +15,7 @@ export class ToastClass {
         this.color = color
         this.position = position
         this.ref = ref
+        this.id = id
         return this
     }
 
@@ -26,6 +28,7 @@ export class ToastClass {
         this.ref = ref
     }
     showToast = () => {
+        this.id++
         this.ref.current.showToast()
     }
     removeToast = () => {
@@ -34,5 +37,5 @@ export class ToastClass {
 
 }
 
-export const toast = new ToastClass('default', 'error',ERROR_TOAST_BACKGROUND,'RB')
+export const toast = new ToastClass('default', 'error',ERROR_TOAST_BACKGROUND,'RB', null, 0)
 

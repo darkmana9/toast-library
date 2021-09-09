@@ -11,5 +11,5 @@ export const Wrapper = styled.div`
   z-index: 9999;
   background-color: ${props => props.backgroundColor};
   right: 0;
-  bottom: 0;
+  bottom: ${props => props.relativePosition}px;
  `
