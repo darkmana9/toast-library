@@ -1,43 +1,49 @@
-import React, { forwardRef, useCallback, useImperativeHandle, useState } from "react";
-
-
-import { ERROR_TOAST_BACKGROUND } from "@/constants/color";
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useState } from "react";
 import { Toast } from "@/components/PortalToast/ToastWrapper/Toast";
 import { Wrapper } from "@/components/PortalToast/ToastWrapper/components";
+import { toast } from "@/service/ToastClass";
 
 
-const ToastWrapper = ({
-                          position,
-                          type = 'error',
-                          time = 300000,
-                          title = 'Error',
-                          indent,
-                          color = ERROR_TOAST_BACKGROUND,
-                          animation
-                      }, ref) => {
+const ToastWrapper = (props, ref) => {
 
-    const [isActive, setIsActive] = useState(false)
-
-
+    const [toasts, setToasts] = useState([])
 
     useImperativeHandle(ref, () => ({
-
         showToast: () => {
-            setIsActive(true)
-            setTimeout(() => {
-                setIsActive(false)
-            }, time)
+            setToasts(prevState => {
+                return (
+                    [
+                        ...prevState,
+                        {
+                            position: toast.position,
+                            type: toast.type,
+                            time: toast.time,
+                            title: toast.title,
+                            indent: toast.indent,
+                            color: toast.color,
+                            animation: toast.animation,
+                        }
+                    ])
+            })
         },
         removeToast: () => {
-            setIsActive(false)
+            setToasts((prevState) => {
+                prevState.pop()
+                return [...prevState]
+            })
         }
     }))
     return (
-        isActive ?
-            <Wrapper position={position} backgroundColor={color}>
-                <Toast title={title} type={type} onRemoveToast/>
-            </Wrapper>
-            : <></>
+        <>
+            {toasts.map((el) => {
+                    console.log('render')
+                    return (
+                        <Wrapper key={Math.random()} position={el.position} backgroundColor={el.color}>
+                            <Toast title={el.title} type={el.type}/>
+                        </Wrapper>
+                    )
+                })}
+        </>
     )
 }
 

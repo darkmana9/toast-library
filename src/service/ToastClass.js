@@ -8,6 +8,7 @@ export class ToastClass {
             return ToastClass.instance
         }
         ToastClass.instance = this
+        this.toasts = []
         this.title = title
         this.type = type
         this.color = color
@@ -18,6 +19,8 @@ export class ToastClass {
 
     setTitle = (title) => {
         this.title = title
+        console.log(this.title)
+        return this
     }
     setRef = (ref) => {
         this.ref = ref
@@ -28,7 +31,8 @@ export class ToastClass {
     removeToast = () => {
         this.ref.current.removeToast()
     }
+
 }
 
-export const toast = new ToastClass('asd', 'error',ERROR_TOAST_BACKGROUND,'RB')
+export const toast = new ToastClass('default', 'error',ERROR_TOAST_BACKGROUND,'RB')
 

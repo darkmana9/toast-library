@@ -5,10 +5,18 @@ import { PortalToast } from "@/components/PortalToast";
 
 
 export const App = () => {
+
+    const showToastHandler = () => {
+        toast.setTitle('Error').showToast()
+    }
+    const showAnotherToastHandler = () => {
+        toast.setTitle('Another').showToast()
+    }
     return (
         <>
             <PortalToast/>
-            <button onClick={toast.showToast}>Get toast</button>
+            <button onClick={showToastHandler}>Get toast</button>
+            <button onClick={showAnotherToastHandler}>Get another toast</button>
         </>
     )
 }
