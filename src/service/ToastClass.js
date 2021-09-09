@@ -31,11 +31,11 @@ export class ToastClass {
         this.id++
         this.ref.current.showToast()
     }
-    removeToast = () => {
-        this.ref.current.removeToast()
+    removeToast = (e) => {
+        this.ref.current.removeToast(e)
     }
 
 }
 
-export const toast = new ToastClass('default', 'error',ERROR_TOAST_BACKGROUND,'RB', null, 0, 3000)
+export const toast = new ToastClass('default', 'error',ERROR_TOAST_BACKGROUND,'RB', null, 0, 30000)
 

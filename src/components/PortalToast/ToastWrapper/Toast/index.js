@@ -9,7 +9,7 @@ import { CloseButton } from "@/components/PortalToast/ToastWrapper/CloseButton";
 import { toast } from "@/service/ToastClass";
 
 
-export const Toast = ({type, title}) => {
+export const Toast = ({type, title, id}) => {
 
     const setSvg = (type) => {
         switch (type) {
@@ -28,14 +28,17 @@ export const Toast = ({type, title}) => {
         }
     }
 
-    const onRemoveToast = useCallback(() => {
-        toast.removeToast()
+    const onRemoveToast = useCallback((e) => {
+        console.log(id)
+        e.target.value = id
+        toast.removeToast(e)
     }, [])
 
     return (
         <>
             <IconWrapper>{setSvg(type)}</IconWrapper>
             <Title>{title}</Title>
+            {id}
             <CloseButton removeToast={onRemoveToast}/>
         </>
     )

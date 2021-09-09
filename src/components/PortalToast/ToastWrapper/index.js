@@ -39,7 +39,14 @@ const ToastWrapper = (props, ref) => {
                 }, toast.time)
             }
         },
-        removeToast: () => {
+        removeToast: (e) => {
+            const el = toasts.find((el, i) => {
+                return el.id === e.target.value
+            })
+            setToasts((prevState) => {
+                prevState.splice(toasts.indexOf(el), 1)
+                return [...prevState]
+            })
 
         }
     }))
@@ -47,9 +54,9 @@ const ToastWrapper = (props, ref) => {
         <>
             {toasts.map((el, i) => {
                 return (
-                    <Wrapper relativePosition={i * (TOAST_HEIGHT + TOAST_GAP) } key={el.id} position={el.position}
+                    <Wrapper relativePosition={i * (TOAST_HEIGHT + TOAST_GAP)} key={el.id} position={el.position}
                              backgroundColor={el.color}>
-                        <Toast title={el.title} type={el.type}/>
+                        <Toast id={el.id} title={el.title} type={el.type}/>
                     </Wrapper>
                 )
             })}
