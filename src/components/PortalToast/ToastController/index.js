@@ -12,6 +12,12 @@ const ToastsController = ({position}, ref) => {
     useImperativeHandle(ref, () => ({
         showToast: () => {
             if (toasts.length < 3) {
+               let timeoutID = setTimeout(() => {
+                    setToasts((prevState) => {
+                        prevState.shift()
+                        return [...prevState]
+                    })
+                }, toast.time)
                 setToasts(prevState => {
                     return (
                         [
@@ -25,21 +31,18 @@ const ToastsController = ({position}, ref) => {
                                 relativePosition: toast.relativePosition,
                                 id: toast.id,
                                 gap: toast.gap,
+                                timeoutID: timeoutID
                             }
                         ])
                 })
-                setTimeout(() => {
-                    setToasts((prevState) => {
-                        prevState.shift()
-                        return [...prevState]
-                    })
-                }, toast.time)
+
             }
         },
         removeToast: (e) => {
             const currentEl = toasts.find((el) => {
                 return el.id === e.target.value
             })
+            clearTimeout(currentEl.timeoutID)
             setToasts((prevState) => {
                 prevState.splice(toasts.indexOf(currentEl), 1)
                 return [...prevState]
