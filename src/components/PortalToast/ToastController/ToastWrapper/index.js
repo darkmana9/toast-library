@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+
 import { Wrapper } from "@/components/PortalToast/ToastController/components";
 import { Toast } from "@/components/PortalToast/ToastController/ToastWrapper/Toast";
 import { toast } from "@/service/ToastClass";
@@ -6,10 +7,10 @@ import { toast } from "@/service/ToastClass";
 export const ToastWrapper = ({el, position}) => {
 
     const [left, setLeft] = useState(0)
+
     const isDragging = useRef(false)
     const prevLeft = useRef(0)
     const startLeft = useRef(0)
-
 
     const pointerMoveHandler = (e) => {
         if (!isDragging.current) {
@@ -25,7 +26,6 @@ export const ToastWrapper = ({el, position}) => {
                 setLeft((prev) => prev + delta)
             }
         }
-
     }
 
     const pointerDownHandler = (e) => {
@@ -48,7 +48,7 @@ export const ToastWrapper = ({el, position}) => {
             setLeft(0)
         } else {
             e.target.value = el.id
-            toast.removeToast(e)
+            toast._removeToast(e)
         }
     }
 

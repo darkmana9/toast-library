@@ -29,7 +29,7 @@ export const Toast = ({type, title, id}) => {
 
     const onRemoveToast = useCallback((e) => {
         e.target.value = id
-        toast.removeToast(e)
+        toast._removeToast(e)
     }, [])
 
     return (

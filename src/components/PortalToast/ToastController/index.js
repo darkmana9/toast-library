@@ -1,4 +1,5 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
+
 import { toast } from "@/service/ToastClass";
 import { ToastWrapper } from "@/components/PortalToast/ToastController/ToastWrapper";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -17,7 +18,6 @@ const ToastsController = ({position}, ref) => {
                             ...prevState,
                             {
                                 type: toast.type,
-                                time: toast.time,
                                 title: toast.title,
                                 indent: toast.indent,
                                 color: toast.color,
@@ -28,7 +28,6 @@ const ToastsController = ({position}, ref) => {
                             }
                         ])
                 })
-
                 setTimeout(() => {
                     setToasts((prevState) => {
                         prevState.shift()
