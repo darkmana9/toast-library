@@ -1,16 +1,13 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useState } from "react";
-import { Toast } from "@/components/PortalToast/ToastWrapper/Toast";
-import { Wrapper } from "@/components/PortalToast/ToastWrapper/components";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { toast } from "@/service/ToastClass";
-import { TOAST_GAP, TOAST_HEIGHT } from "@/constants/position";
+import { ToastWrapper } from "@/components/PortalToast/ToastController/ToastWrapper";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { ListWrapper } from "@/components/PortalToast/ToastController/components";
 
-
-const ToastWrapper = (props, ref) => {
+const ToastsController = ({position}, ref) => {
 
     const [toasts, setToasts] = useState([])
-    useEffect(() => {
-        console.log('render')
-    })
+
     useImperativeHandle(ref, () => ({
         showToast: () => {
             if (toasts.length < 3) {
@@ -19,7 +16,6 @@ const ToastWrapper = (props, ref) => {
                         [
                             ...prevState,
                             {
-                                position: toast.position,
                                 type: toast.type,
                                 time: toast.time,
                                 title: toast.title,
@@ -28,42 +24,44 @@ const ToastWrapper = (props, ref) => {
                                 animation: toast.animation,
                                 relativePosition: toast.relativePosition,
                                 id: toast.id,
+                                gap: toast.gap,
                             }
                         ])
                 })
+
                 setTimeout(() => {
                     setToasts((prevState) => {
-                        prevState.pop()
+                        prevState.shift()
                         return [...prevState]
                     })
                 }, toast.time)
             }
         },
         removeToast: (e) => {
-            const el = toasts.find((el, i) => {
+            const currentEl = toasts.find((el) => {
                 return el.id === e.target.value
             })
             setToasts((prevState) => {
-                prevState.splice(toasts.indexOf(el), 1)
+                prevState.splice(toasts.indexOf(currentEl), 1)
                 return [...prevState]
             })
-
         }
     }))
     return (
-        <>
-            {toasts.map((el, i) => {
-                return (
-                    <Wrapper relativePosition={i * (TOAST_HEIGHT + TOAST_GAP)} key={el.id} position={el.position}
-                             backgroundColor={el.color}>
-                        <Toast id={el.id} title={el.title} type={el.type}/>
-                    </Wrapper>
-                )
-            })}
-        </>
+        <ListWrapper position={position}>
+            <TransitionGroup component={null}>
+                {toasts.map((el) => {
+                    return (
+                        <CSSTransition key={el.id} timeout={500} classNames={el.animation}>
+                            <ToastWrapper position={position} el={el}/>
+                        </CSSTransition>
+                    )
+                })}
+            </TransitionGroup>
+        </ListWrapper>
     )
 }
 
-export default forwardRef(ToastWrapper)
+export default forwardRef(ToastsController)
 
 

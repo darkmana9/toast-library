@@ -1,7 +1,7 @@
 import React from "react";
-import Close from '@/../public/svg/close.svg'
-import { CloseIconWrapper } from "@/components/PortalToast/ToastWrapper/Toast/components";
 
+import Close from '@/../public/svg/close.svg'
+import { CloseIconWrapper } from "@/components/PortalToast/ToastController/ToastWrapper/CloseButton/components";
 
 export const CloseButton = ({removeToast}) => {
 

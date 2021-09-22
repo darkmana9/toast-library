@@ -1,15 +1,14 @@
-import React, { useMemo, useRef } from "react";
+import React, { useRef } from "react";
 import ReactDOM from 'react-dom'
 
 import { toast } from "@/service/ToastClass";
-import ToastWrapper from "@/components/PortalToast/ToastWrapper";
-import { ERROR_TOAST_BACKGROUND } from "@/constants/color";
+import ToastsController from "@/components/PortalToast/ToastController";
 
-export const PortalToast = () => {
+export const PortalToast = ({position}) => {
     const controlRef = useRef()
-    toast.setRef(controlRef)
+    toast._setRef(controlRef)
     return (
-        ReactDOM.createPortal(<ToastWrapper
+        ReactDOM.createPortal(<ToastsController position={position}
             ref={controlRef}/>, document.body)
     )
 }

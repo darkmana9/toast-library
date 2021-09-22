@@ -4,10 +4,9 @@ import Error from '@/../public/svg/error.svg'
 import Info from '@/../public/svg/info.svg'
 import Warning from '@/../public/svg/warning.svg'
 import Success from '@/../public/svg/success.svg'
-import { IconWrapper, Title } from "@/components/PortalToast/ToastWrapper/Toast/components";
-import { CloseButton } from "@/components/PortalToast/ToastWrapper/CloseButton";
 import { toast } from "@/service/ToastClass";
-
+import { IconWrapper, Title } from "@/components/PortalToast/ToastController/ToastWrapper/Toast/components";
+import { CloseButton } from "@/components/PortalToast/ToastController/ToastWrapper/CloseButton";
 
 export const Toast = ({type, title, id}) => {
 
@@ -29,7 +28,6 @@ export const Toast = ({type, title, id}) => {
     }
 
     const onRemoveToast = useCallback((e) => {
-        console.log(id)
         e.target.value = id
         toast.removeToast(e)
     }, [])
