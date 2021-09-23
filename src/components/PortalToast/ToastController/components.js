@@ -22,9 +22,9 @@ export const Wrapper = styled.div.attrs(props => ({
   align-items: center;
   position: relative;
   z-index: 9999;
-  margin: ${props => props.gap}px;
-  background-color: ${props => props.backgroundColor};
   bottom: 0;
+  margin:  ${props => props.gap}px ${props => props.gap}px  ${props => props.gap}px 0px;
+  background-color: ${props => props.backgroundColor};
   
   &.fade-enter {
     opacity: 0;  
