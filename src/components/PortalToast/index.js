@@ -1,8 +1,10 @@
 import React, { useRef } from "react";
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
+import PropTypes from "prop-types";
 
 import { toast } from "@/service/ToastClass";
 import ToastsController from "@/components/PortalToast/ToastController";
+
 
 export const PortalToast = ({position}) => {
     const controlRef = useRef()
@@ -12,3 +14,7 @@ export const PortalToast = ({position}) => {
             ref={controlRef}/>, document.body)
     )
 }
+
+PortalToast.propTypes = {
+    position: PropTypes.object,
+};

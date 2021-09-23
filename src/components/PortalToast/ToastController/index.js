@@ -1,4 +1,5 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
+import PropTypes from "prop-types";
 
 import { toast } from "@/service/ToastClass";
 import { ToastWrapper } from "@/components/PortalToast/ToastController/ToastWrapper";
@@ -65,5 +66,10 @@ const ToastsController = ({position}, ref) => {
 }
 
 export default forwardRef(ToastsController)
+
+ToastsController.propTypes = {
+    position: PropTypes.object,
+    ref: PropTypes.object,
+}
 
 

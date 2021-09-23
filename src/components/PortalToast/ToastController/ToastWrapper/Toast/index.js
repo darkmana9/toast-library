@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import PropTypes from "prop-types";
 
 import Error from '@/../public/svg/error.svg'
 import Info from '@/../public/svg/info.svg'
@@ -40,4 +41,10 @@ export const Toast = ({type, title, id}) => {
             <CloseButton removeToast={onRemoveToast}/>
         </>
     )
+}
+
+Toast.propTypes = {
+    type: PropTypes.string,
+    title: PropTypes.string,
+    id: PropTypes.number
 }

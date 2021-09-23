@@ -3,6 +3,8 @@ import React, { useRef, useState } from 'react';
 import { Wrapper } from "@/components/PortalToast/ToastController/components";
 import { Toast } from "@/components/PortalToast/ToastController/ToastWrapper/Toast";
 import { toast } from "@/service/ToastClass";
+import PropTypes from "prop-types";
+import { App } from "@/App";
 
 export const ToastWrapper = ({el, position}) => {
 
@@ -69,3 +71,7 @@ export const ToastWrapper = ({el, position}) => {
     );
 };
 
+ToastWrapper.propTypes = {
+    el: PropTypes.object,
+    position: PropTypes.object,
+};

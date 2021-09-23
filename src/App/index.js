@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
+import PropTypes from "prop-types";
 
 import { toast } from "@/service/ToastClass";
 import { PortalToast } from "@/components/PortalToast";
 import { LB, LT, RB, RT } from "@/constants/position";
-import PropTypes from "prop-types";
-
 
 export const App = ({title, type, animation, color, gap, position, time}) => {
 
