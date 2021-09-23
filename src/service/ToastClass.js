@@ -74,14 +74,16 @@ export class ToastClass {
     }
     setAnimation = animation => {
         try{
-            if(animation !== 'fade' || animation !== 'translate'){
-                throw 'invalid animation name'
+            if(animation === 'fade' || animation === 'translate'){
+                this.animation = animation
+                return this
+            }else {
+                throw `invalid animation name - ${animation}`
             }
-            this.animation = animation
         }catch (e){
             console.log(e)
         }
-        return this
+
     }
     setGap = gap => {
         try {
@@ -89,6 +91,18 @@ export class ToastClass {
                 throw "invalid toast gap"
             } else {
                 this.gap = gap
+            }
+            return this
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    setTime = time => {
+        try {
+            if (isNaN(time)) {
+                throw "invalid toast time"
+            } else {
+                this.time = time
             }
             return this
         } catch (e) {
