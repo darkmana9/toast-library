@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
     ERROR_TOAST_BACKGROUND,
     INFO_TOAST_BACKGROUND,
