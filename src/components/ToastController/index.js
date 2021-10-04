@@ -1,19 +1,18 @@
-import React, { forwardRef, useImperativeHandle, useState } from "react";
-import PropTypes from "prop-types";
+import toast from '@/service/ToastClass'
+import React, { forwardRef, useImperativeHandle, useState } from 'react'
+import PropTypes from 'prop-types'
 
-import { toast } from "@/service/ToastClass";
-import { ToastWrapper } from "@/components/PortalToast/ToastController/ToastWrapper";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { ListWrapper } from "@/components/PortalToast/ToastController/components";
+import { ToastWrapper } from '@/components/ToastWrapper'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { ListWrapper } from '@/components/ToastController/components'
 
 const ToastsController = ({position}, ref) => {
-
     const [toasts, setToasts] = useState([])
 
     useImperativeHandle(ref, () => ({
         showToast: () => {
             if (toasts.length < 3) {
-               let timeoutID = setTimeout(() => {
+                let timeoutID = setTimeout(() => {
                     setToasts((prevState) => {
                         prevState.shift()
                         return [...prevState]
@@ -23,17 +22,7 @@ const ToastsController = ({position}, ref) => {
                     return (
                         [
                             ...prevState,
-                            {
-                                type: toast.type,
-                                title: toast.title,
-                                indent: toast.indent,
-                                color: toast.color,
-                                animation: toast.animation,
-                                relativePosition: toast.relativePosition,
-                                id: toast.id,
-                                gap: toast.gap,
-                                timeoutID: timeoutID
-                            }
+                            {timeoutID, ...toast}
                         ])
                 })
 

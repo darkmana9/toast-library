@@ -1,9 +1,8 @@
-import React from "react";
-import ReactDOM from 'react-dom'
+import toast from '@/service/ToastClass';
+import PortalToast from '@/components/PortalToast';
+import { LB, LT, RB, RT } from '@/constants/position';
+import React from 'react'
 
-import { App } from "@/App";
+export { toast, PortalToast, LB, LT, RB, RT };
 
-ReactDOM.render(
-    <App/>,
-    document.getElementById('root'),
-)
+

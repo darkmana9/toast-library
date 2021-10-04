@@ -1,13 +1,11 @@
-import React, { useRef, useState } from 'react';
+import toast from '@/service/ToastClass'
+import PropTypes from 'prop-types'
+import React, { useRef, useState } from 'react'
 
-import { Wrapper } from "@/components/PortalToast/ToastController/components";
-import { Toast } from "@/components/PortalToast/ToastController/ToastWrapper/Toast";
-import { toast } from "@/service/ToastClass";
-import PropTypes from "prop-types";
-import { App } from "@/App";
+import { Wrapper } from '@/components/ToastController/components'
+import { Toast } from '@/components/ToastWrapper/Toast'
 
 export const ToastWrapper = ({el, position}) => {
-
     const [left, setLeft] = useState(0)
 
     const isDragging = useRef(false)
@@ -20,11 +18,11 @@ export const ToastWrapper = ({el, position}) => {
         }
         const delta = extractPositionDelta(e)
         if (position.name.match(/L/)) {
-            if ((startLeft.current - e.pageX) > 0) { // POSITION
+            if ((startLeft.current - e.pageX) > 0) {
                 setLeft((prev) => prev + delta)
             }
         } else {
-            if ((startLeft.current - e.pageX) < 0) { // POSITION
+            if ((startLeft.current - e.pageX) < 0) {
                 setLeft((prev) => prev + delta)
             }
         }
@@ -68,10 +66,10 @@ export const ToastWrapper = ({el, position}) => {
                    title={el.title}
                    type={el.type}/>
         </Wrapper>
-    );
-};
+    )
+}
 
 ToastWrapper.propTypes = {
     el: PropTypes.object,
     position: PropTypes.object,
-};
+}

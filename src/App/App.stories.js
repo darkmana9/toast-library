@@ -1,12 +1,12 @@
-import React from "react";
-import { App } from "@/App/index";
+import React from 'react'
 
+import { App } from '@/App/index'
 
 export default {
-    title: "TestComponent",
+    title: 'TestComponent',
     component: App
-};
+}
 
-export const Template = (args) => <App  {...args}/>;
+export const Template = (args) => <App  {...args}/>
 
 

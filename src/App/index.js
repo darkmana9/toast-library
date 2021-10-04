@@ -1,30 +1,29 @@
 import React, { useState } from 'react'
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import { toast } from "@/service/ToastClass";
-import { PortalToast } from "@/components/PortalToast";
-import { LB, LT, RB, RT } from "@/constants/position";
+import toast from '@/service/ToastClass';
+import PortalToast from '@/components/PortalToast';
+import { LB, LT, RB, RT } from '@/constants/position';
 
-export const App = ({title, type, animation, color, gap, position, time}) => {
-
-    const [pos, setPos] = useState({})
+export const App = ({title, type, animation, color, gap, positionProp, time}) => {
+    const [position, setPosition] = useState({})
 
     const showToast = () => {
-        switch (position){
+        switch (positionProp) {
             case 'LT': {
-                setPos(LT)
+                setPosition(LT)
                 break
             }
             case 'LB': {
-                setPos(LB)
+                setPosition(LB)
                 break
             }
             case 'RB': {
-                setPos(RB)
+                setPosition(RB)
                 break
             }
             case 'RT': {
-                setPos(RT)
+                setPosition(RT)
                 break
             }
         }
@@ -32,28 +31,28 @@ export const App = ({title, type, animation, color, gap, position, time}) => {
     }
     return (
         <>
-            <PortalToast position={pos}/>
+            <PortalToast position={position}/>
             <button onClick={showToast}>show toast</button>
-
         </>
     )
 }
+
 App.propTypes = {
     title: PropTypes.string,
     color: PropTypes.string,
     time: PropTypes.number,
     type: PropTypes.oneOf(['error', 'warning', 'success', 'info']),
     animation: PropTypes.oneOf(['fade', 'translate']),
-    position: PropTypes.oneOf(['LB', 'LT', 'RT', 'RB']),
+    positionProp: PropTypes.oneOf(['LB', 'LT', 'RT', 'RB']),
     gap: PropTypes.number,
-};
+}
 
 App.defaultProps = {
     title: 'tittle',
     type: 'error',
     color: '#37E29A',
     animation: 'translate',
-    position: 'RT',
+    positionProp: 'RT',
     gap: 20,
     time: 5000,
-};
+}
